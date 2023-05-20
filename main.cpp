@@ -1,5 +1,7 @@
 #include <iostream>
 #include "utils/Menu.h"
+#include "dataStructures/AdjacencyList.h"
+#include "dataStructures/IncidenceMatrix.h"
 
 std::vector<MenuItem> displayOptions = {{"display matrix", {}},
                                         {"display list", {}},
@@ -16,13 +18,13 @@ std::vector<MenuItem> menuItemsPath = {{"read from file", {}},
                                        {"generate graph", {}},
                                        {"display graph", {displayOptions}},
                                        {"dijkstra algorithm", {}},
-                                       {"bellman–ford algorithm", {}},
+                                       {"bellman-ford algorithm", {}},
                                        {"exit", {}}};
 
 std::vector<MenuItem> menuItemsFlow = {{"read from file", {}},
                                        {"generate graph", {}},
                                        {"display graph", {displayOptions}},
-                                       {"ford–fulkerson algorithm", {}},
+                                       {"ford-fulkerson algorithm", {}},
                                        {"exit", {}}};
 
 std::vector<MenuItem> mainMenuItems = {{"minimal spanning tree problem", {menuItemsTree}},
@@ -32,8 +34,8 @@ std::vector<MenuItem> mainMenuItems = {{"minimal spanning tree problem", {menuIt
 
 int main()
 {
-
-    Menu menu("Main Menu", mainMenuItems);
+    Graph *graph = new Graph(0, 0);
+    Menu menu("Main Menu", mainMenuItems, graph);
     menu.run();
     return 0;
 }

@@ -4,7 +4,7 @@ project(project1 VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(program main.cpp utils/Menu.cpp utils/Timer.cpp utils/RandomGenerator.cpp)
+add_executable(program main.cpp utils/Menu.cpp utils/Timer.cpp utils/RandomGenerator.cpp dataStructures/AdjacencyList.cpp dataStructures/IncidenceMatrix.cpp dataStructures/Edge.cpp dataStructures/Graph.cpp)
 
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
