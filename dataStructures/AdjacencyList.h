@@ -10,11 +10,16 @@ class AdjacencyList
 {
 
 public:
-    AdjacencyList(int numOFVertices);
+    AdjacencyList(int numOfVertices);
     ~AdjacencyList();
     void display();
     void addEdge(int from, int to, int weight = 1);
-    Array<int> shorthestPathDijkstra(int start, int end);
+
+    Array<Array<int> *> *shorthestPathDijkstra(int start, int end);
+    Array<Array<int> *> *shorthestPathBellmanFord(int start, int end);
+    Array<Array<int> *> *minimalSpanningTreePrim(int start);
+    Array<Array<int> *> *minimalSpanningTreeKruskal(int start);
+
     size_t getLength();
 
 private:

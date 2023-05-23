@@ -17,6 +17,7 @@ public:
     void removeFromIndex(int index); // delete a node from index
     void remove(const T &data);      // delete a node with given data
     bool contains(const T &data);    // check if list contains data
+    void clear();                    // clear the list
     size_t getLength();              // get length of list
     T &operator[](int index);
 
@@ -119,6 +120,15 @@ bool Array<T>::contains(const T &data)
             return true;
     }
     return false;
+}
+
+// clears the array
+template <typename T>
+void Array<T>::clear()
+{
+    delete[] _data;
+    _data = nullptr;
+    _length = 0;
 }
 
 template <typename T>

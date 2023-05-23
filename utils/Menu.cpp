@@ -56,10 +56,23 @@ bool Menu::run()
                         delete graph;
                         int numberOfVertices, numberOfEdges, from, to, weight;
                         file >> numberOfVertices >> numberOfEdges;
-                        graph = new Graph(numberOfVertices, numberOfEdges);
+
+                        if (menuName == "minimal spanning tree problem")
+                            graph = new Graph(numberOfVertices, numberOfEdges);
+                        else
+                            graph = new Graph(numberOfVertices, numberOfEdges);
 
                         while (file >> from >> to >> weight)
-                            graph->addEdge(from, to, weight);
+                        {
+                            if (menuName == "minimal spanning tree problem")
+                            {
+                                graph->getAdjList().addEdge(from, to, weight);
+                                graph->getAdjList().addEdge(to, from, weight);
+                                graph->getIncMatrix().addUndirectedEdge(to, from, weight);
+                            }
+                            else
+                                graph->addEdge(from, to, weight);
+                        }
 
                         file.close();
                         std::cout << "File read successfully - Graph loaded" << '\n';
@@ -85,7 +98,7 @@ bool Menu::run()
                     int minWeight = getIntInput("Enter minimum weight: ");
                     while (minWeight < 1)
                     {
-                        std::cout << "Minimum weight must be greater than 0" << '\n';
+                        std::cout << "Minimum weight must be greater or equal than 1" << '\n';
                         minWeight = getIntInput("Enter minimum weight: ");
                     }
 
@@ -96,7 +109,12 @@ bool Menu::run()
                         maxWeight = getIntInput("Enter maximum weight: ");
                     }
 
-                    Graph *newGraph = graph->generateRandom(numberOfVertices, density, minWeight, maxWeight);
+                    Graph *newGraph;
+
+                    if (menuName == "minimal spanning tree problem")
+                        newGraph = graph->generateUndriectedGraph(numberOfVertices, density, minWeight, maxWeight);
+                    else
+                        newGraph = graph->generateDriectedGraph(numberOfVertices, density, minWeight, maxWeight);
 
                     delete graph;
                     graph = newGraph;
@@ -110,12 +128,41 @@ bool Menu::run()
                 }
                 else if (chosenItemString == "prim's algorithm")
                 {
-                    std::cout << "Not implemented yet5" << std::endl;
+                    if (graph == nullptr || graph->getAdjList().getLength() == 0)
+                    {
+                        std::cout << "Graph is empty \n";
+                        waitForUser();
+                        continue;
+                    }
+                    std::cout << "List of available vertices: \n";
+                    for (int i = 0; i < graph->getAdjList().getLength(); i++)
+                        std::cout << i << ' ';
+                    std::cout << '\n';
+                    int start = getIntInput("Enter starting vertex: ");
+                    std::cout << "Adjacency list: \n";
+                    handleMinimalSpanningTree(graph->getAdjList().minimalSpanningTreePrim(start));
+                    std::cout << "Incidence matrix: \n";
+                    handleMinimalSpanningTree(graph->getIncMatrix().minimalSpanningTreePrim(start));
                     waitForUser();
                 }
                 else if (chosenItemString == "bellman-ford algorithm")
                 {
-                    std::cout << "Not implemented yet5" << std::endl;
+                    if (graph == nullptr || graph->getIncMatrix().getLength() == 0)
+                    {
+                        std::cout << "Graph is empty \n";
+                        waitForUser();
+                        continue;
+                    }
+                    std::cout << "List of available vertices: \n";
+                    for (int i = 0; i < graph->getAdjList().getLength(); i++)
+                        std::cout << i << ' ';
+                    std::cout << '\n';
+                    int start = getIntInput("Enter starting vertex: ");
+                    int end = getIntInput("Enter end vertex: ");
+                    std::cout << "Adjacency list: \n";
+                    handleShortestPath(graph->getAdjList().shorthestPathBellmanFord(start, end));
+                    std::cout << "Incidence matrix: \n";
+                    handleShortestPath(graph->getIncMatrix().shorthestPathBellmanFord(start, end));
                     waitForUser();
                 }
                 else if (chosenItemString == "dijkstra algorithm")
@@ -136,10 +183,10 @@ bool Menu::run()
                     int end = getIntInput("Enter end vertex: ");
 
                     std::cout << "Adjacency list: \n";
-                    handleDijkstra(graph->getAdjList().shorthestPathDijkstra(start, end));
+                    handleShortestPath(graph->getAdjList().shorthestPathDijkstra(start, end));
 
                     std::cout << "Incidence matrix: \n";
-                    handleDijkstra(graph->getIncMatrix().shorthestPathDijkstra(start, end));
+                    handleShortestPath(graph->getIncMatrix().shorthestPathDijkstra(start, end));
 
                     waitForUser();
                 }
@@ -189,6 +236,7 @@ int Menu::getIntInput(std::string message)
     std::cin >> x;
     return x;
 }
+// gets float input from user
 float Menu::getFloatInput(std::string message)
 {
     float x;
@@ -204,9 +252,26 @@ std::string Menu::getStringInput(std::string message)
     std::cin >> x;
     return x;
 }
-
-void Menu::handleDijkstra(Array<int> distances)
+// handles shortest path result
+void Menu::handleShortestPath(Array<Array<int> *> *result)
 {
+    Array<int> &distances = *(*result)[0];
+    Array<int> &path = *(*result)[1];
+
+    if (path.getLength() == 0)
+        std::cout << "No path found" << std::endl;
+    else
+    {
+        std::cout << "Path: ";
+        for (int i = 0; i < path.getLength(); i++)
+        {
+            std::cout << path[i];
+            if (i < path.getLength() - 1)
+                std::cout << " -> ";
+        }
+        std::cout << std::endl;
+    }
+
     std::cout << "Shortest distances: \n";
     for (int i = 0; i < distances.getLength(); i++)
         if (distances[i] == 10000000)
@@ -214,4 +279,24 @@ void Menu::handleDijkstra(Array<int> distances)
         else
             std::cout << i << ": " << distances[i] << '\n';
     std::cout << '\n';
+    delete result;
+}
+
+// handles minimal spanning tree result
+void Menu::handleMinimalSpanningTree(Array<Array<int> *> *result)
+{
+    Array<int> &key = *(*result)[0];
+    Array<int> &parent = *(*result)[1];
+
+    std::cout << "MST: " << std::endl;
+    for (int i = 0; i < graph->getAdjList().getLength(); i++)
+    {
+        if (parent[i] != -1)
+            std::cout << parent[i] << " -> " << i << std::endl;
+    }
+    int sum = 0;
+    for (int i = 0; i < key.getLength(); i++)
+        sum += key[i];
+    std::cout << "Sum: " << sum << std::endl;
+    delete result;
 }

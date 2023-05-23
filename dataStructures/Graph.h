@@ -15,7 +15,8 @@ public:
     void addEdge(int from, int to, int weight = 1);
     AdjacencyList &getAdjList();
     IncidenceMatrix &getIncMatrix();
-    Graph *generateRandom(int numOfVertices, float density, int minWeight, int maxWeight);
+    Graph *generateDriectedGraph(int numOfVertices, float density, int minWeight, int maxWeight);
+    Graph *generateUndriectedGraph(int numOfVertices, float density, int minWeight, int maxWeight);
 
 private:
     AdjacencyList adjList;

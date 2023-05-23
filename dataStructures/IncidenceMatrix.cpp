@@ -35,44 +35,39 @@ void IncidenceMatrix::addEdge(int from, int to, int weight)
     edgeCounter++;
 }
 
-Array<int> IncidenceMatrix::findAdjacent(int vertex)
+void IncidenceMatrix::addUndirectedEdge(int from, int to, int weight)
 {
-    Array<int> adjacent;
-    for (int i = 0; i < matrix[vertex]->getLength(); i++)
-    {
-        if ((*matrix[vertex])[i] != 0 && (*matrix[vertex])[i] > 0)
-        {
-            for (int j = 0; j < matrix.getLength(); j++)
-            {
-                if ((*matrix[j])[i] != 0 && j != vertex)
-                {
-                    adjacent.addBack(j);
-                    break;
-                }
-            }
-        }
-    }
-    return adjacent;
+    if (from >= numOfVertices)
+        return;
+    if (to >= numOfVertices)
+        return;
+    (*matrix[from])[edgeCounter] = weight;
+    (*matrix[to])[edgeCounter] = weight;
+    edgeCounter++;
 }
 
-Array<int> IncidenceMatrix::shorthestPathDijkstra(int start, int end)
+Array<Array<int> *> *IncidenceMatrix::shorthestPathDijkstra(int start, int end)
 {
-    Array<int> distance;
+    Array<int> *dist = new Array<int>();
+    Array<int> &distance = *dist;
     Array<int> previous;
     Array<int> unvisited;
 
+    // setup distance, previous and unvisited arrays
     for (int i = 0; i < numOfVertices; i++)
     {
         distance.addBack(10000000);
         previous.addBack(-1);
         unvisited.addBack(i);
     }
-    distance[start] = 0;
+    distance[start] = 0; // set distance of start vertex to 0
 
+    // for each unvisited vertex
     while (unvisited.getLength() > 0)
     {
         int min = 10000000;
         int minIndex = -1;
+        // find the vertex with the smallest distance
         for (int i = 0; i < unvisited.getLength(); i++)
         {
             if (distance[unvisited[i]] < min)
@@ -81,12 +76,147 @@ Array<int> IncidenceMatrix::shorthestPathDijkstra(int start, int end)
                 minIndex = unvisited[i];
             }
         }
-        if (minIndex == end)
-            break;
-        if (minIndex == -1)
+        // if (minIndex == end)
+        //     break;
+        if (minIndex == -1) // if no vertex was found
             break;
 
-        unvisited.remove(minIndex);
+        unvisited.remove(minIndex); // remove the vertex from the unvisited list
+
+        // for each edge of the vertex
+        for (int i = 0; i < numOfEdges; i++)
+        {
+            // if the edge is not 0 and has positive value (meaning it is an edge from the vertex)
+            if ((*matrix[minIndex])[i] != 0 && (*matrix[minIndex])[i] > 0)
+            {
+                for (int j = 0; j < numOfVertices; j++)
+                {
+                    if ((*matrix[j])[i] != 0 && j != minIndex)
+                    { // relax the edge
+                        if (distance[j] > distance[minIndex] + (*matrix[minIndex])[i])
+                        {
+                            distance[j] = distance[minIndex] + (*matrix[minIndex])[i];
+                            previous[j] = minIndex;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Array<int> *path = new Array<int>();
+    int current = end;
+    if (previous[current] != -1)
+        while (current != start)
+        {
+            path->addFront(current);
+            current = previous[current];
+        }
+    path->addFront(start);
+
+    if (previous[end] == -1)
+        path->clear();
+
+    Array<Array<int> *> *result = new Array<Array<int> *>();
+    result->addBack(dist);
+    result->addBack(path);
+    return result;
+}
+
+Array<Array<int> *> *IncidenceMatrix::shorthestPathBellmanFord(int start, int end)
+{
+    Array<int> *dist = new Array<int>();
+    Array<int> &distance = *dist;
+    Array<int> previous;
+    // setup distance and previous arrays
+    for (int i = 0; i < numOfVertices; i++)
+    {
+        distance.addBack(10000000);
+        previous.addBack(-1);
+    }
+    distance[start] = 0; // set distance of start to 0
+
+    // start Bellman-Ford algorithm
+    for (int i = 0; i < numOfVertices - 1; i++)
+    {
+        // for each edge
+        for (int j = 0; j < numOfEdges; j++)
+        {
+            for (int k = 0; k < numOfVertices; k++)
+            {
+                // if edge exists and has positive value (negative value means reverse edge)
+                if ((*matrix[k])[j] != 0 && (*matrix[k])[j] > 0)
+                { // find other vertex of this edge
+                    for (int l = 0; l < numOfVertices; l++)
+                    {
+                        if ((*matrix[l])[j] != 0 && l != k)
+                        {
+                            // relax edge
+                            if (distance[l] > distance[k] + (*matrix[k])[j])
+                            {
+                                distance[l] = distance[k] + (*matrix[k])[j];
+                                previous[l] = k;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Array<int> *path = new Array<int>();
+    int current = end;
+    if (previous[current] != -1)
+        while (current != start)
+        {
+            path->addFront(current);
+            current = previous[current];
+        }
+    path->addFront(start);
+
+    if (previous[end] == -1)
+        path->clear();
+
+    Array<Array<int> *> *result = new Array<Array<int> *>();
+    result->addBack(dist);
+    result->addBack(path);
+    return result;
+}
+
+Array<Array<int> *> *IncidenceMatrix::minimalSpanningTreePrim(int start)
+{
+    Array<int> *p = new Array<int>();
+    Array<int> *k = new Array<int>();
+    Array<int> &parent = *p;
+    Array<int> &key = *k;
+
+    Array<bool> mstSet;
+    Array<int> queue;
+
+    for (int i = 0; i < numOfVertices; i++)
+    {
+        key.addBack(10000000);
+        parent.addBack(-1);
+        mstSet.addBack(false);
+    }
+
+    key[start] = 0;
+    queue.addBack(start);
+
+    while (queue.getLength() > 0)
+    {
+        int min = 10000000;
+        int minIndex = -1;
+        for (int i = 0; i < queue.getLength(); i++)
+        {
+            if (key[queue[i]] < min)
+            {
+                min = key[queue[i]];
+                minIndex = queue[i];
+            }
+        }
+        queue.remove(minIndex);
+        mstSet[minIndex] = true;
 
         for (int i = 0; i < numOfEdges; i++)
         {
@@ -96,52 +226,26 @@ Array<int> IncidenceMatrix::shorthestPathDijkstra(int start, int end)
                 {
                     if ((*matrix[j])[i] != 0 && j != minIndex)
                     {
-                        if (distance[j] > distance[minIndex] + (*matrix[minIndex])[i]) // (*matrix[minIndex])[i] to jest chujowe, na pierwszej [] jest krawedz a na drugiej wierzcholek
-                        {                                                              // czyli trzeba ogarnac jakos numer krawedzi bo minindex daje nam numer wierzcholka
-                            distance[j] = distance[minIndex] + (*matrix[minIndex])[i];
-                            previous[j] = minIndex;
+                        if (mstSet[j] == false && (*matrix[minIndex])[i] < key[j])
+                        {
+                            parent[j] = minIndex;
+                            key[j] = (*matrix[minIndex])[i];
+                            queue.addBack(j);
                         }
                     }
                 }
             }
         }
-
-        // auto adjacent = findAdjacent(minIndex);
-        // for (int i = 0; i < adjacent.getLength(); i++)
-        // {
-        //     std::cout << "Distance to " << adjacent[i] << ": " << (*matrix[minIndex])[i] << std::endl;
-        //     if (distance[adjacent[i]] > distance[minIndex] + (*matrix[minIndex])[i]) // (*matrix[minIndex])[i] to jest chujowe, na pierwszej [] jest krawedz a na drugiej wierzcholek
-        //     {                                                                        // czyli trzeba ogarnac jakos numer krawedzi bo minindex daje nam numer wierzcholka
-        //         distance[adjacent[i]] = distance[minIndex] + (*matrix[minIndex])[i];
-        //         previous[adjacent[i]] = minIndex;
-        //     }
-        // }
     }
+    Array<Array<int> *> *result = new Array<Array<int> *>();
+    result->addBack(k);
+    result->addBack(p);
+    return result;
+}
 
-    Array<int> path;
-    int current = end;
-    if (previous[current] != -1)
-        while (current != start)
-        {
-            path.addFront(current);
-            current = previous[current];
-        }
-    path.addFront(start);
-
-    if (previous[end] == -1)
-        std::cout << "No path found" << std::endl;
-    else
-    {
-        std::cout << "Path: ";
-        for (int i = 0; i < path.getLength(); i++)
-        {
-            std::cout << path[i];
-            if (i < path.getLength() - 1)
-                std::cout << " -> ";
-        }
-        std::cout << std::endl;
-    }
-    return distance;
+Array<Array<int> *> *IncidenceMatrix::minimalSpanningTreeKruskal(int start)
+{
+    return nullptr;
 }
 
 size_t IncidenceMatrix::getLength()

@@ -25,7 +25,36 @@ IncidenceMatrix &Graph::getIncMatrix()
     return incMatrix;
 }
 
-Graph *Graph::generateRandom(int numOfVertices, float density, int minWeight, int maxWeight)
+Graph *Graph::generateUndriectedGraph(int numOfVertices, float density, int minWeight, int maxWeight)
+{
+
+    RandomGenerator random;
+    int maxNumOfEdges = numOfVertices * (numOfVertices - 1) / 2;
+    int numOfEdges = maxNumOfEdges * density;
+
+    Graph *graph = new Graph(numOfVertices, numOfEdges);
+
+    Array<Edge> edges;
+    for (int i = 0; i < numOfVertices; i++)
+    {
+        for (int j = i + 1; j < numOfVertices; j++)
+        {
+            edges.addBack(Edge(i, j, random.generateRandomInt(minWeight, maxWeight)));
+        }
+    }
+    for (int i = 0; i < numOfEdges; i++)
+    {
+        int index = random.generateRandomInt(0, edges.getLength() - 1);
+        graph->getAdjList().addEdge(edges[index].getFrom(), edges[index].getTo(), edges[index].getWeight());
+        graph->getAdjList().addEdge(edges[index].getTo(), edges[index].getFrom(), edges[index].getWeight());
+        graph->getIncMatrix().addUndirectedEdge(edges[index].getFrom(), edges[index].getTo(), edges[index].getWeight());
+        edges.removeFromIndex(index);
+    }
+
+    return graph;
+}
+
+Graph *Graph::generateDriectedGraph(int numOfVertices, float density, int minWeight, int maxWeight)
 {
 
     RandomGenerator random;

@@ -16,9 +16,12 @@ public:
     ~IncidenceMatrix();
     void display();
     void addEdge(int from, int to, int weight = 1);
-    Array<int> shorthestPathDijkstra(int start, int end);
+    void addUndirectedEdge(int from, int to, int weight = 1);
+    Array<Array<int> *> *shorthestPathDijkstra(int start, int end);
+    Array<Array<int> *> *shorthestPathBellmanFord(int start, int end);
+    Array<Array<int> *> *minimalSpanningTreePrim(int start);
+    Array<Array<int> *> *minimalSpanningTreeKruskal(int start);
     size_t getLength();
-    Array<int> findAdjacent(int vertex);
 
 private:
     Array<Array<int> *> matrix;
