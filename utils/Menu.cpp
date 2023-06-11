@@ -68,7 +68,7 @@ bool Menu::run()
                             {
                                 graph->getAdjList().addEdge(from, to, weight);
                                 graph->getAdjList().addEdge(to, from, weight);
-                                graph->getIncMatrix().addEdge(to, from, weight);
+                                graph->getIncMatrix().addUndirectedEdge(to, from, weight);
                             }
                             else
                                 graph->addEdge(from, to, weight);
