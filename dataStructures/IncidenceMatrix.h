@@ -7,6 +7,8 @@
 #include <iomanip>
 
 #include "Array.h"
+#include "Edge.h"
+#include "Subset.h"
 
 class IncidenceMatrix
 {

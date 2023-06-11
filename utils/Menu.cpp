@@ -68,7 +68,7 @@ bool Menu::run()
                             {
                                 graph->getAdjList().addEdge(from, to, weight);
                                 graph->getAdjList().addEdge(to, from, weight);
-                                graph->getIncMatrix().addUndirectedEdge(to, from, weight);
+                                graph->getIncMatrix().addEdge(to, from, weight);
                             }
                             else
                                 graph->addEdge(from, to, weight);
@@ -123,7 +123,21 @@ bool Menu::run()
                 }
                 else if (chosenItemString == "kruskal's algorithm")
                 {
-                    std::cout << "Not implemented yet5" << std::endl;
+                    if (graph == nullptr || graph->getAdjList().getLength() == 0)
+                    {
+                        std::cout << "Graph is empty \n";
+                        waitForUser();
+                        continue;
+                    }
+                    std::cout << "List of available vertices: \n";
+                    for (int i = 0; i < graph->getAdjList().getLength(); i++)
+                        std::cout << i << ' ';
+                    std::cout << '\n';
+                    int start = getIntInput("Enter starting vertex: ");
+                    std::cout << "Adjacency list: \n";
+                    handleMinimalSpanningTree(graph->getAdjList().minimalSpanningTreeKruskal(start), 1);
+                    std::cout << "Incidence matrix: \n";
+                    handleMinimalSpanningTree(graph->getIncMatrix().minimalSpanningTreeKruskal(start), 1);
                     waitForUser();
                 }
                 else if (chosenItemString == "prim's algorithm")
@@ -140,9 +154,9 @@ bool Menu::run()
                     std::cout << '\n';
                     int start = getIntInput("Enter starting vertex: ");
                     std::cout << "Adjacency list: \n";
-                    handleMinimalSpanningTree(graph->getAdjList().minimalSpanningTreePrim(start));
+                    handleMinimalSpanningTree(graph->getAdjList().minimalSpanningTreePrim(start), 0);
                     std::cout << "Incidence matrix: \n";
-                    handleMinimalSpanningTree(graph->getIncMatrix().minimalSpanningTreePrim(start));
+                    handleMinimalSpanningTree(graph->getIncMatrix().minimalSpanningTreePrim(start), 0);
                     waitForUser();
                 }
                 else if (chosenItemString == "bellman-ford algorithm")
@@ -192,7 +206,20 @@ bool Menu::run()
                 }
                 else if (chosenItemString == "ford-fulkerson algorithm")
                 {
-                    std::cout << "Not implemented yet6 \n";
+                    if (graph == nullptr || graph->getIncMatrix().getLength() == 0)
+                    {
+                        std::cout << "Graph is empty \n";
+                        waitForUser();
+                        continue;
+                    }
+                    std::cout << "List of available vertices: \n";
+                    for (int i = 0; i < graph->getAdjList().getLength(); i++)
+                        std::cout << i << ' ';
+                    std::cout << '\n';
+                    int start = getIntInput("Enter starting vertex: ");
+                    int end = getIntInput("Enter end vertex: ");
+                    std::cout << "Adjacency list: \n";
+
                     waitForUser();
                 }
                 else if (chosenItemString == "display matrix")
@@ -203,6 +230,22 @@ bool Menu::run()
                 else if (chosenItemString == "display list")
                 {
                     graph->getAdjList().display();
+                    waitForUser();
+                }
+                else if (chosenItemString == "test shorthest path")
+                {
+
+                    Tester tester = Tester(100);
+                    tester.testAlgorithm("test shorthest path");
+
+                    waitForUser();
+                }
+                else if (chosenItemString == "test mininal spanning tree")
+                {
+
+                    Tester tester = Tester(100);
+                    tester.testAlgorithm("test mininal spanning tree");
+
                     waitForUser();
                 }
                 else
@@ -282,21 +325,56 @@ void Menu::handleShortestPath(Array<Array<int> *> *result)
     delete result;
 }
 
-// handles minimal spanning tree result
-void Menu::handleMinimalSpanningTree(Array<Array<int> *> *result)
+// handles minimal spanning tree result if algorithmType is 0 then it's prim's algorithm, if it's 1 then it's kruskal's algorithm
+void Menu::handleMinimalSpanningTree(Array<Array<int> *> *result, int algorithmType)
 {
-    Array<int> &key = *(*result)[0];
-    Array<int> &parent = *(*result)[1];
-
-    std::cout << "MST: " << std::endl;
-    for (int i = 0; i < graph->getAdjList().getLength(); i++)
+    if (result->getLength() == 0)
     {
-        if (parent[i] != -1)
-            std::cout << parent[i] << " -> " << i << std::endl;
+        std::cout << "No path found" << std::endl;
+        return;
     }
-    int sum = 0;
-    for (int i = 0; i < key.getLength(); i++)
-        sum += key[i];
-    std::cout << "Sum: " << sum << std::endl;
-    delete result;
+
+    if (algorithmType == 0)
+    {
+        Array<int> &key = *(*result)[0];
+        Array<int> &parent = *(*result)[1];
+
+        for (int i = 0; i < graph->getAdjList().getLength(); i++)
+            if (parent[i] != -1)
+                std::cout << parent[i] << " <-> " << i << " (" << key[i] << ')' << std::endl;
+
+        int sum = 0;
+        for (int i = 0; i < key.getLength(); i++)
+            sum += key[i];
+        std::cout << "Sum: " << sum << std::endl;
+        delete result;
+    }
+    else if (algorithmType == 1)
+    {
+        Array<int> &start = *(*result)[0];
+        Array<int> &end = *(*result)[1];
+        Array<int> &weight = *(*result)[2];
+
+        for (int i = 0; i < graph->getAdjList().getLength() - 1; i++)
+            std::cout << start[i] << " <-> " << end[i] << " (" << weight[i] << ')' << std::endl;
+
+        int sum = 0;
+        for (int i = 0; i < weight.getLength(); i++)
+            sum += weight[i];
+        std::cout << "Sum: " << sum << std::endl;
+        delete result;
+    }
+    else
+    {
+        std::cout << "Invalid algorithm type" << std::endl;
+        delete result;
+    }
+}
+
+void Menu::handleMaximumFlow(Array<Array<int> *> *result)
+{
+    Array<int> &flow = *(*result)[0];
+    Array<int> &path = *(*result)[1];
+    Array<int> &capacity = *(*result)[2];
+    Array<int> &residualCapacity = *(*result)[3];
 }

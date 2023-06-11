@@ -245,7 +245,90 @@ Array<Array<int> *> *IncidenceMatrix::minimalSpanningTreePrim(int start)
 
 Array<Array<int> *> *IncidenceMatrix::minimalSpanningTreeKruskal(int start)
 {
-    return nullptr;
+    // add all one dir edges to a array
+    Array<Edge> edges;
+    for (int i = 0; i < numOfVertices; i++)
+    {
+        for (int j = 0; j < numOfEdges; j++)
+        {
+            if ((*matrix[i])[j] != 0 && (*matrix[i])[j] > 0)
+            {
+                for (int k = 0; k < numOfVertices; k++)
+                {
+                    if ((*matrix[k])[j] != 0 && k != i)
+                    {
+                        Edge edge(i, k, (*matrix[i])[j]);
+                        bool found = false;
+                        for (int l = 0; l < edges.getLength(); l++)
+                        {
+                            if (edges[l].getFrom() == edge.getTo() && edges[l].getTo() == edge.getFrom())
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                            edges.addBack(edge);
+                    }
+                }
+            }
+        }
+    }
+    // sort edges by weight
+    for (int i = 0; i < edges.getLength(); i++)
+    {
+        for (int j = 0; j < edges.getLength() - 1; j++)
+        {
+            if (edges[j].getWeight() > edges[j + 1].getWeight())
+            {
+                Edge temp = edges[j];
+                edges[j] = edges[j + 1];
+                edges[j + 1] = temp;
+            }
+        }
+    }
+
+    // create subsets
+    Subset *subset = new Subset[numOfVertices];
+    for (int i = 0; i < numOfVertices; i++)
+    {
+        subset[i].parent = i;
+        subset[i].rank = 0;
+    }
+
+    Array<Edge> result;
+
+    for (int i = 0; i < edges.getLength(); i++)
+    {
+        int x = find(subset, edges[i].getFrom());
+        int y = find(subset, edges[i].getTo());
+
+        if (x != y)
+        {
+            result.addBack(edges[i]);
+            Union(subset, x, y);
+        }
+    }
+
+    Array<Array<int> *> *resultArray = new Array<Array<int> *>();
+    Array<int> *s = new Array<int>();
+    Array<int> *e = new Array<int>();
+    Array<int> *k = new Array<int>();
+
+    for (int i = 0; i < result.getLength(); i++)
+    {
+        s->addBack(result[i].getFrom());
+        e->addBack(result[i].getTo());
+        k->addBack(result[i].getWeight());
+    }
+
+    resultArray->addBack(s);
+    resultArray->addBack(e);
+    resultArray->addBack(k);
+
+    delete[] subset;
+
+    return resultArray;
 }
 
 size_t IncidenceMatrix::getLength()

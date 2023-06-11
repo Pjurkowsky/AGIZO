@@ -25,6 +25,14 @@ public:
     void remove(T data);
     Node *find(T data);
     Node *getHead();
+    int getLength() { return _length; }
+    T &operator[](int index)
+    {
+        Node *current = head;
+        for (int i = 0; i < index; i++)
+            current = current->next;
+        return current->data;
+    }
 };
 
 template <typename T>

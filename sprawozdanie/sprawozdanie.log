@@ -1,0 +1,423 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.6.1)  11 JUN 2023 22:54
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/home/pjury/Desktop/sdizo/project2/SDIZO2/sprawozdanie/sprawozdanie
+(/home/pjury/Desktop/sdizo/project2/SDIZO2/sprawozdanie/sprawozdanie.tex
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count167
+\c@section=\count168
+\c@subsection=\count169
+\c@subsubsection=\count170
+\c@paragraph=\count171
+\c@subparagraph=\count172
+\c@figure=\count173
+\c@table=\count174
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen135
+\Gin@req@width=\dimen136
+) (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucs.sty
+Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
+ (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-global.def
+File: uni-global.def 2013/05/13 UCS: Unicode global data
+)
+\uc@secondtry=\count175
+\uc@combtoks=\toks15
+\uc@combtoksb=\toks16
+\uc@temptokena=\toks17
+) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count176
+\float@exts=\toks18
+\float@box=\box45
+\@float@everytoks=\toks19
+\@floatcapt=\box46
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks20
+\inpenc@posthook=\toks21
+ (/usr/share/texlive/texmf-dist/tex/latex/ucs/utf8x.def
+File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+)) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/02/14 3.40 The Babel package
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/02/14 3.40 Babel switching mechanism
+) (/usr/share/texlive/texmf-dist/tex/generic/babel-polish/polish.ldf
+Language: polish 2005/03/31 v1.2l Polish support from the babel system
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/02/14 3.40 Babel common definitions
+\babel@savecnt=\count177
+\U@D=\dimen137
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count178
+)
+Package babel Info: Making " an active character on input line 83.
+\pl@left=\dimen138
+\pl@down=\dimen139
+\pl@right=\dimen140
+\pl@temp=\dimen141
+)) (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+) (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2019/10/16 v2.13 Sectioning titles
+\ttl@box=\box47
+\beforetitleunit=\skip49
+\aftertitleunit=\skip50
+\ttl@plus=\dimen142
+\ttl@minus=\dimen143
+\ttl@toksa=\toks22
+\titlewidth=\dimen144
+\titlewidthlast=\dimen145
+\titlewidthfirst=\dimen146
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen147
+\ar@mcellbox=\box48
+\extrarowheight=\dimen148
+\NC@list=\toks23
+\extratabsurround=\skip51
+\backup@length=\skip52
+\ar@cellbox=\box49
+) (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip53
+\multirow@cntb=\count179
+\multirow@dima=\skip54
+\bigstrutjot=\dimen149
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count180
+\l__pdf_internal_box=\box50
+) (./sprawozdanie.aux
+
+LaTeX Warning: Label `tab:my-table' multiply defined.
+
+
+LaTeX Warning: Label `tab:my-table' multiply defined.
+
+
+LaTeX Warning: Label `texbook' multiply defined.
+
+)
+\openout1 = `sprawozdanie.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count181
+\scratchdimen=\dimen150
+\scratchbox=\box51
+\nofMPsegments=\count182
+\nofMParguments=\count183
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count184
+\MPscratchDim=\dimen151
+\MPnumerator=\count185
+\makeMPintoPDFobject=\count186
+\everyMPtoPDFconversion=\toks25
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+)) (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
+File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
+) (./titlepage.tex
+<images/image.png, id=1, 670.505pt x 143.53625pt>
+File: images/image.png Graphic file (type png)
+<use images/image.png>
+Package pdftex.def Info: images/image.png  used on input line 7.
+(pdftex.def)             Requested size: 398.33858pt x 85.27261pt.
+
+Overfull \hbox (38.33858pt too wide) in paragraph at lines 7--8
+ [] 
+ []
+
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-1.def
+File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
+) (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/image.png>])
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 50.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 50.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 50.
+ [1] [2] [3] [4] (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-3.def
+File: uni-3.def 2013/05/13 UCS: Unicode data U+0300..U+03FF
+)
+<images/dijkstralista.png, id=31, 607.26875pt x 341.275pt>
+File: images/dijkstralista.png Graphic file (type png)
+<use images/dijkstralista.png>
+Package pdftex.def Info: images/dijkstralista.png  used on input line 148.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 148--149
+[][] 
+ []
+
+[5]
+<images/dijkstramacierz.png, id=36, 607.26875pt x 341.275pt>
+File: images/dijkstramacierz.png Graphic file (type png)
+<use images/dijkstramacierz.png>
+Package pdftex.def Info: images/dijkstramacierz.png  used on input line 171.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 171--172
+[][] 
+ []
+
+[6 <./images/dijkstralista.png>]
+<images/bellmanlista.png, id=42, 607.26875pt x 341.275pt>
+File: images/bellmanlista.png Graphic file (type png)
+<use images/bellmanlista.png>
+Package pdftex.def Info: images/bellmanlista.png  used on input line 194.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 194--195
+[][] 
+ []
+
+[7 <./images/dijkstramacierz.png>]
+<images/bellmanmacierz.png, id=47, 607.26875pt x 341.275pt>
+File: images/bellmanmacierz.png Graphic file (type png)
+<use images/bellmanmacierz.png>
+Package pdftex.def Info: images/bellmanmacierz.png  used on input line 215.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 215--216
+[][] 
+ []
+
+[8 <./images/bellmanlista.png>]
+<images/dijkstrabellmanlista.png, id=52, 607.26875pt x 341.275pt>
+File: images/dijkstrabellmanlista.png Graphic file (type png)
+<use images/dijkstrabellmanlista.png>
+Package pdftex.def Info: images/dijkstrabellmanlista.png  used on input line 221.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 221--222
+[][] 
+ []
+
+<images/dijkstrabellmanmacierz.png, id=53, 607.26875pt x 341.275pt>
+File: images/dijkstrabellmanmacierz.png Graphic file (type png)
+<use images/dijkstrabellmanmacierz.png>
+Package pdftex.def Info: images/dijkstrabellmanmacierz.png  used on input line 226.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 226--227
+[][] 
+ []
+
+[9 <./images/bellmanmacierz.png> <./images/dijkstrabellmanlista.png>]
+<images/db25.png, id=59, 635.37375pt x 357.335pt>
+File: images/db25.png Graphic file (type png)
+<use images/db25.png>
+Package pdftex.def Info: images/db25.png  used on input line 231.
+(pdftex.def)             Requested size: 369.88582pt x 208.02869pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 231--232
+[][] 
+ []
+
+<images/db50.png, id=60, 635.37375pt x 357.335pt>
+File: images/db50.png Graphic file (type png)
+<use images/db50.png>
+Package pdftex.def Info: images/db50.png  used on input line 236.
+(pdftex.def)             Requested size: 369.88582pt x 208.02869pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 236--237
+[][] 
+ []
+
+[10 <./images/dijkstrabellmanmacierz.png> <./images/db25.png>]
+<images/db75.png, id=66, 635.37375pt x 357.335pt>
+File: images/db75.png Graphic file (type png)
+<use images/db75.png>
+Package pdftex.def Info: images/db75.png  used on input line 241.
+(pdftex.def)             Requested size: 369.88582pt x 208.02869pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 241--242
+[][] 
+ []
+
+<images/db100.png, id=67, 635.37375pt x 357.335pt>
+File: images/db100.png Graphic file (type png)
+<use images/db100.png>
+Package pdftex.def Info: images/db100.png  used on input line 246.
+(pdftex.def)             Requested size: 369.88582pt x 208.02869pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 246--247
+[][] 
+ []
+
+[11 <./images/db50.png> <./images/db75.png>]
+<images/primlista.png, id=73, 607.26875pt x 341.275pt>
+File: images/primlista.png Graphic file (type png)
+<use images/primlista.png>
+Package pdftex.def Info: images/primlista.png  used on input line 269.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 269--270
+[][] 
+ []
+
+[12 <./images/db100.png>]
+<images/primmacierz.png, id=79, 607.26875pt x 341.275pt>
+File: images/primmacierz.png Graphic file (type png)
+<use images/primmacierz.png>
+Package pdftex.def Info: images/primmacierz.png  used on input line 291.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 291--292
+[][] 
+ []
+
+[13 <./images/primlista.png>]
+<images/kruskallista.png, id=84, 607.26875pt x 341.275pt>
+File: images/kruskallista.png Graphic file (type png)
+<use images/kruskallista.png>
+Package pdftex.def Info: images/kruskallista.png  used on input line 315.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 315--316
+[][] 
+ []
+
+[14 <./images/primmacierz.png>]
+<images/kruskalmacierz.png, id=89, 607.26875pt x 341.275pt>
+File: images/kruskalmacierz.png Graphic file (type png)
+<use images/kruskalmacierz.png>
+Package pdftex.def Info: images/kruskalmacierz.png  used on input line 337.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 337--338
+[][] 
+ []
+
+[15 <./images/kruskallista.png>]
+<images/mstlista.png, id=94, 623.32875pt x 350.30875pt>
+File: images/mstlista.png Graphic file (type png)
+<use images/mstlista.png>
+Package pdftex.def Info: images/mstlista.png  used on input line 344.
+(pdftex.def)             Requested size: 369.88582pt x 207.8777pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 344--345
+[][] 
+ []
+
+<images/mstmacierz.png, id=95, 607.26875pt x 341.275pt>
+File: images/mstmacierz.png Graphic file (type png)
+<use images/mstmacierz.png>
+Package pdftex.def Info: images/mstmacierz.png  used on input line 349.
+(pdftex.def)             Requested size: 369.88582pt x 207.8754pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 349--350
+[][] 
+ []
+
+[16 <./images/kruskalmacierz.png> <./images/mstlista.png>]
+<images/mst25.png, id=101, 635.37375pt x 357.335pt>
+File: images/mst25.png Graphic file (type png)
+<use images/mst25.png>
+Package pdftex.def Info: images/mst25.png  used on input line 354.
+(pdftex.def)             Requested size: 369.88582pt x 208.02869pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 354--355
+[][] 
+ []
+
+<images/mst50.png, id=102, 635.37375pt x 357.335pt>
+File: images/mst50.png Graphic file (type png)
+<use images/mst50.png>
+Package pdftex.def Info: images/mst50.png  used on input line 359.
+(pdftex.def)             Requested size: 369.88582pt x 208.02869pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 359--360
+[][] 
+ []
+
+[17 <./images/mstmacierz.png> <./images/mst25.png>]
+<images/mst75.png, id=108, 635.37375pt x 357.335pt>
+File: images/mst75.png Graphic file (type png)
+<use images/mst75.png>
+Package pdftex.def Info: images/mst75.png  used on input line 365.
+(pdftex.def)             Requested size: 369.88582pt x 208.02869pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 365--366
+[][] 
+ []
+
+<images/mst100.png, id=109, 635.37375pt x 357.335pt>
+File: images/mst100.png Graphic file (type png)
+<use images/mst100.png>
+Package pdftex.def Info: images/mst100.png  used on input line 371.
+(pdftex.def)             Requested size: 369.88582pt x 208.02869pt.
+
+Overfull \hbox (9.88582pt too wide) in paragraph at lines 371--372
+[][] 
+ []
+
+[18 <./images/mst50.png> <./images/mst75.png>] [19 <./images/mst100.png>] [20] (./sprawozdanie.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4481 strings out of 483034
+ 58352 string characters out of 5962820
+ 292599 words of memory out of 5000000
+ 19461 multiletter control sequences out of 15000+600000
+ 542292 words of font info for 43 fonts, out of 8000000 for 9000
+ 101 hyphenation exceptions out of 8191
+ 30i,9n,33p,465b,642s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/pjury/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/pjury/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/pjury/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </home/pjury/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/pjury/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/pjury/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/pjury/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/pjury/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on sprawozdanie.pdf (21 pages, 660236 bytes).
+PDF statistics:
+ 451 PDF objects out of 1000 (max. 8388607)
+ 93 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
+

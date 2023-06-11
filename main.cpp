@@ -33,58 +33,27 @@ std::vector<MenuItem> mainMenuItems = {{"minimal spanning tree problem", {menuIt
                                        {"maximum flow problem", {menuItemsFlow}},
                                        {"exit", {}}};
 
-Array<Array<int> *> *test()
+std::vector<MenuItem> testMenuItems = {{"test shorthest path", {}},
+                                       {"test mininal spanning tree", {}},
+                                       {"exit", {}}};
+
+int main(int argc, char const *argv[])
 {
-    Array<int> *test1 = new Array<int>();
-    Array<int> &test11 = *test1;
-
-    test11.addBack(1);
-    test11.addBack(2);
-    test11.addBack(3);
-    Array<int> *test2 = new Array<int>();
-    test2->addBack(4);
-    test2->addBack(5);
-    test2->addBack(6);
-
-    Array<Array<int> *> *test3 = new Array<Array<int> *>();
-    test3->addBack(test1);
-    test3->addBack(test2);
-
-    std::cout << (*test3)[0]->toString();
-    std::cout << (*test3)[1]->toString();
-
-    return test3;
-}
-
-int **test2()
-{
-    int *test = new int[2];
-    test[0] = 1;
-    test[1] = 2;
-    int *test23 = new int[2];
-    test23[0] = 3;
-    test23[1] = 4;
-    int **test3 = new int *[2];
-    test3[0] = test;
-    test3[1] = test23;
-    return test3;
-}
-
-int main()
-{
-    // std::cout << "test2" << std::endl;
-    // int **test4 = test2();
-    // std::cout << test4[0][0] << std::endl;
-    // std::cout << test4[0][1] << std::endl;
-    // std::cout << test4[1][0] << std::endl;
-    // std::cout << test4[1][1] << std::endl;
-
-    // Array<Array<int> *> *test3 = test();
-    // std::cout << test3[0][0]->toString();
-    // std::cout << test3[0][1]->toString();
-
     Graph *graph = new Graph(0, 0);
-    Menu menu("Main Menu", mainMenuItems, graph);
-    menu.run();
+
+    if (argc > 1)
+    {
+        for (int i = 0; i < argc; i++)
+            if (strcmp(argv[i], "-t") == 0)
+            {
+                Menu menu("Test Menu", testMenuItems, graph);
+                menu.run();
+            }
+    }
+    else
+    {
+        Menu menu("Main Menu", mainMenuItems, graph);
+        menu.run();
+    }
     return 0;
 }

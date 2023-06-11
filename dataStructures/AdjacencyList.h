@@ -5,6 +5,7 @@
 #include "Array.h"
 #include "LinkedList.h"
 #include "Edge.h"
+#include "Subset.h"
 
 class AdjacencyList
 {
@@ -19,8 +20,10 @@ public:
     Array<Array<int> *> *shorthestPathBellmanFord(int start, int end);
     Array<Array<int> *> *minimalSpanningTreePrim(int start);
     Array<Array<int> *> *minimalSpanningTreeKruskal(int start);
+    Array<Array<int> *> *maximumFlowFordFulkerson(int start, int end);
 
     size_t getLength();
+    Array<LinkedList<Edge> *> &getAdjList();
 
 private:
     Array<LinkedList<Edge> *> adjList;

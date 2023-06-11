@@ -1,4 +1,4 @@
-#ifndef EDDGE_H
+#ifndef EDGE_H
 #define EDGE_H
 
 #include <iostream>
