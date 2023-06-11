@@ -55,7 +55,7 @@ bool Menu::run()
                     {
                         delete graph;
                         int numberOfVertices, numberOfEdges, from, to, weight;
-                        file >> numberOfVertices >> numberOfEdges;
+                        file >> numberOfEdges >> numberOfVertices;
 
                         if (menuName == "minimal spanning tree problem")
                             graph = new Graph(numberOfVertices, numberOfEdges);
