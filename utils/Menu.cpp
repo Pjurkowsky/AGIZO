@@ -57,10 +57,7 @@ bool Menu::run()
                         int numberOfVertices, numberOfEdges, from, to, weight;
                         file >> numberOfEdges >> numberOfVertices;
 
-                        if (menuName == "minimal spanning tree problem")
-                            graph = new Graph(numberOfVertices, numberOfEdges);
-                        else
-                            graph = new Graph(numberOfVertices, numberOfEdges);
+                        graph = new Graph(numberOfVertices, numberOfEdges);
 
                         while (file >> from >> to >> weight)
                         {
@@ -235,7 +232,7 @@ bool Menu::run()
                 else if (chosenItemString == "test shorthest path")
                 {
 
-                    Tester tester = Tester(100);
+                    Tester tester = Tester(2);
                     tester.testAlgorithm("test shorthest path");
 
                     waitForUser();
@@ -339,12 +336,16 @@ void Menu::handleMinimalSpanningTree(Array<Array<int> *> *result, int algorithmT
         Array<int> &key = *(*result)[0];
         Array<int> &parent = *(*result)[1];
 
+        int x = 0;
+
         for (int i = 0; i < graph->getAdjList().getLength(); i++)
             if (parent[i] != -1)
+            {
                 std::cout << parent[i] << " <-> " << i << " (" << key[i] << ')' << std::endl;
-
+                x++;
+            }
         int sum = 0;
-        for (int i = 0; i < key.getLength(); i++)
+        for (int i = 0; i < x + 1; i++)
             sum += key[i];
         std::cout << "Sum: " << sum << std::endl;
         delete result;
@@ -355,7 +356,7 @@ void Menu::handleMinimalSpanningTree(Array<Array<int> *> *result, int algorithmT
         Array<int> &end = *(*result)[1];
         Array<int> &weight = *(*result)[2];
 
-        for (int i = 0; i < graph->getAdjList().getLength() - 1; i++)
+        for (int i = 0; i < weight.getLength(); i++)
             std::cout << start[i] << " <-> " << end[i] << " (" << weight[i] << ')' << std::endl;
 
         int sum = 0;

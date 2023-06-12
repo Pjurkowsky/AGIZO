@@ -21,26 +21,27 @@ void AdjacencyList::addEdge(int from, int to, int weight)
     adjList[from]->addBack(Edge(from, to, weight));
 }
 
+// method for finding shortest path using Dijkstra's algorithm
 Array<Array<int> *> *AdjacencyList::shorthestPathDijkstra(int start, int end)
 {
     Array<int> *dist = new Array<int>();
     Array<int> &distance = *dist;
     Array<int> previous;
     Array<int> unvisited;
-
+    // setup distance, previous and unvisited arrays
     for (int i = 0; i < adjList.getLength(); i++)
     {
         distance.addBack(10000000);
         previous.addBack(-1);
         unvisited.addBack(i);
     }
-    distance[start] = 0;
+    distance[start] = 0; // set distance of start vertex to 0
 
-    while (unvisited.getLength() > 0)
+    while (unvisited.getLength() > 0) // for each unvisited vertex
     {
         int min = 10000000;
         int minIndex = -1;
-        for (int i = 0; i < unvisited.getLength(); i++)
+        for (int i = 0; i < unvisited.getLength(); i++) // find the vertex with the smallest distance
         {
             if (distance[unvisited[i]] < min)
             {
@@ -50,15 +51,15 @@ Array<Array<int> *> *AdjacencyList::shorthestPathDijkstra(int start, int end)
         }
         // if (minIndex == end)
         // break;
-        if (minIndex == -1)
+        if (minIndex == -1) // if no vertex was found
             break;
         unvisited.remove(minIndex);
 
         auto current = adjList[minIndex]->getHead();
-        while (current != nullptr)
+        while (current != nullptr) // for each neighbour of the vertex
         {
             Edge edge = current->data;
-            if (distance[edge.getTo()] > distance[minIndex] + edge.getWeight())
+            if (distance[edge.getTo()] > distance[minIndex] + edge.getWeight()) // if the distance is smaller than the current distance
             {
                 distance[edge.getTo()] = distance[minIndex] + edge.getWeight();
                 previous[edge.getTo()] = minIndex;
@@ -69,7 +70,7 @@ Array<Array<int> *> *AdjacencyList::shorthestPathDijkstra(int start, int end)
 
     Array<int> *path = new Array<int>();
     int current = end;
-    if (previous[current] != -1)
+    if (previous[current] != -1) // if there is a path
         while (current != start)
         {
             path->addFront(current);
@@ -92,23 +93,23 @@ Array<Array<int> *> *AdjacencyList::shorthestPathBellmanFord(int start, int end)
     Array<int> *dist = new Array<int>();
     Array<int> &distance = *dist;
     Array<int> previous;
-
+    // setup distance and previous arrays
     for (int i = 0; i < adjList.getLength(); i++)
     {
         distance.addBack(10000000);
         previous.addBack(-1);
     }
-    distance[start] = 0;
+    distance[start] = 0; // set distance of start vertex to 0
 
-    for (int i = 0; i < adjList.getLength() - 1; i++)
+    for (int i = 0; i < adjList.getLength() - 1; i++) // for each vertex
     {
-        for (int j = 0; j < adjList.getLength(); j++)
+        for (int j = 0; j < adjList.getLength(); j++) // for each edge
         {
-            auto current = adjList[j]->getHead();
+            auto current = adjList[j]->getHead(); // for each neighbour of the vertex
             while (current != nullptr)
             {
                 Edge edge = current->data;
-                if (distance[edge.getTo()] > distance[j] + edge.getWeight())
+                if (distance[edge.getTo()] > distance[j] + edge.getWeight()) // if the distance is smaller than the current distance
                 {
                     distance[edge.getTo()] = distance[j] + edge.getWeight();
                     previous[edge.getTo()] = j;
@@ -121,7 +122,7 @@ Array<Array<int> *> *AdjacencyList::shorthestPathBellmanFord(int start, int end)
 
     Array<int> *path = new Array<int>();
     int current = end;
-    if (previous[current] != -1)
+    if (previous[current] != -1) // if there is a path
         while (current != start)
         {
             path->addFront(current);
@@ -147,22 +148,22 @@ Array<Array<int> *> *AdjacencyList::minimalSpanningTreePrim(int start)
 
     Array<bool> mstSet;
     Array<int> queue;
-
+    // setup parent, key, mstSet and queue arrays
     for (int i = 0; i < adjList.getLength(); i++)
     {
         key.addBack(10000000);
         parent.addBack(-1);
         mstSet.addBack(false);
     }
-
+    // set key of start vertex to 0 and add it to the queue
     key[start] = 0;
     queue.addBack(start);
 
-    while (queue.getLength() > 0)
+    while (queue.getLength() > 0) // while there are vertices in the queue
     {
         int min = 10000000;
         int minIndex = -1;
-        for (int i = 0; i < queue.getLength(); i++)
+        for (int i = 0; i < queue.getLength(); i++) // find the vertex with the smallest key
         {
             if (key[queue[i]] < min)
             {
@@ -174,10 +175,10 @@ Array<Array<int> *> *AdjacencyList::minimalSpanningTreePrim(int start)
         mstSet[minIndex] = true;
 
         auto current = adjList[minIndex]->getHead();
-        while (current != nullptr)
+        while (current != nullptr) // for each neighbour of the vertex
         {
             Edge edge = current->data;
-            if (mstSet[edge.getTo()] == false && edge.getWeight() < key[edge.getTo()])
+            if (mstSet[edge.getTo()] == false && edge.getWeight() < key[edge.getTo()]) // if the neighbour is not in the MST and the weight is smaller than the current key
             {
                 parent[edge.getTo()] = minIndex;
                 key[edge.getTo()] = edge.getWeight();
@@ -200,11 +201,11 @@ Array<Array<int> *> *AdjacencyList::minimalSpanningTreeKruskal(int start)
     for (int i = 0; i < adjList.getLength(); i++)
     {
         auto current = adjList[i]->getHead();
-        while (current != nullptr)
+        while (current != nullptr) // for each neighbour of the vertex
         {
             Edge edge = current->data;
             bool found = false;
-            for (int j = 0; j < edges.getLength(); j++)
+            for (int j = 0; j < edges.getLength(); j++) // check if the edge is already in the array
             {
                 if (edges[j].getFrom() == edge.getTo() && edges[j].getTo() == edge.getFrom())
                 {
@@ -238,15 +239,16 @@ Array<Array<int> *> *AdjacencyList::minimalSpanningTreeKruskal(int start)
 
     Array<Edge> result;
 
-    for (int i = 0; i < edges.getLength(); i++)
+    for (int i = 0; i < edges.getLength(); i++) // for each edge
     {
         int x = find(subset, edges[i].getFrom());
         int y = find(subset, edges[i].getTo());
 
-        if (x != y)
+        if (x != y) // if the vertices are not in the same subset
         {
+            // add the edge to the result and merge the subsets
             result.addBack(edges[i]);
-            Union(subset, x, y);
+            Union(subset, x, y); //
         }
     }
 
@@ -273,90 +275,6 @@ Array<Array<int> *> *AdjacencyList::minimalSpanningTreeKruskal(int start)
 
 Array<Array<int> *> *AdjacencyList::maximumFlowFordFulkerson(int start, int end)
 {
-    // Array<Array<int> *> *result = new Array<Array<int> *>();
-    // Array<int> flow;
-    // Array<int> path;
-    // Array<int> capacity;
-    // Array<int> residualCapacity;
-    // Array<int> parent;
-
-    // for (int i = 0; i < adjList.getLength(); i++)
-    // {
-    //     flow.addBack(0);
-    //     path.addBack(-1);
-    //     capacity.addBack(0);
-    //     residualCapacity.addBack(0);
-    //     parent.addBack(-1);
-    // }
-
-    // int maxFlow = 0;
-
-    // while (true)
-    // {
-    //     Array<Array<int> *> *pathArray = shorthestPathBFS(start, end);
-    //     Array<int> *dist = (*pathArray)[0];
-    //     Array<int> *path = (*pathArray)[1];
-
-    //     if (path->getLength() == 0)
-    //         break;
-
-    //     int min = 10000000;
-    //     for (int i = 0; i < path->getLength() - 1; i++)
-    //     {
-    //         int from = (*path)[i];
-    //         int to = (*path)[i + 1];
-    //         int index = -1;
-    //         auto current = adjList[from]->getHead();
-    //         while (current != nullptr)
-    //         {
-    //             index++;
-    //             if (current->data.getTo() == to)
-    //                 break;
-    //             current = current->next;
-    //         }
-    //         if (index == -1)
-    //             continue;
-    //         if (min > (*dist)[to] - (*dist)[from])
-    //             min = (*dist)[to] - (*dist)[from];
-    //     }
-
-    //     for (int i = 0; i < path->getLength() - 1; i++)
-    //     {
-    //         int from = (*path)[i];
-    //         int to = (*path)[i + 1];
-    //         int index = -1;
-    //         auto current = adjList[from]->getHead();
-    //         while (current != nullptr)
-    //         {
-    //             index++;
-    //             if (current->data.getTo() == to)
-    //                 break;
-    //             current = current->next;
-    //         }
-    //         if (index == -1)
-    //             continue;
-    //         if (current->data.getWeight() - flow[from] > 0)
-    //         {
-    //             flow[from] += min;
-    //             capacity[index] += min;
-    //             residualCapacity[index] = current->data.getWeight() - flow[from];
-    //         }
-    //         else
-    //         {
-    //             flow[from] -= min;
-    //             capacity[index] -= min;
-    //             residualCapacity[index] = current->data.getWeight() - flow[from];
-    //         }
-    //     }
-
-    //     maxFlow += min;
-    // }
-
-    // result->addBack(&flow);
-    // result->addBack(&capacity);
-    // result->addBack(&residualCapacity);
-
-    // return result;
 }
 
 size_t AdjacencyList::getLength()

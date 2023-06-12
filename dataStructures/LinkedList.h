@@ -18,15 +18,15 @@ private:
     int _length;
 
 public:
-    LinkedList();
-    ~LinkedList();
-    void display();
-    void addBack(T data);
-    void remove(T data);
-    Node *find(T data);
-    Node *getHead();
-    int getLength() { return _length; }
-    T &operator[](int index)
+    LinkedList();                       // constructor
+    ~LinkedList();                      // destructor
+    void display();                     // method for displaying the graph
+    void addBack(T data);               // method for adding data
+    void remove(T data);                // method for removing data
+    Node *find(T data);                 // method for finding data
+    Node *getHead();                    // method for getting the head of the linked list
+    int getLength() { return _length; } // method for getting the length of the linked list
+    T &operator[](int index)            // operator for accessing the data at index
     {
         Node *current = head;
         for (int i = 0; i < index; i++)

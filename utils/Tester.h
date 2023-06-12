@@ -9,8 +9,8 @@
 class Tester
 {
 public:
-    Tester(int numOfTests);
-    void testAlgorithm(std::string type);
+    Tester(int numOfTests);               // constructor
+    void testAlgorithm(std::string type); // method for testing algorithm
 
 private:
     int numOfTests;

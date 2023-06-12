@@ -3,7 +3,7 @@
 Tester::Tester(int numOfTests) : numOfTests(numOfTests)
 {
 }
-
+// method for testing algorithm
 void Tester::testAlgorithm(std::string type)
 {
     double time[4][5][4] = {};

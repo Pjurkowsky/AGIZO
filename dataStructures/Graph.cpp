@@ -1,6 +1,6 @@
 #include "Graph.h"
 
-Graph::Graph(int numOfVertices, int numOfEdges) : adjList(numOfVertices), incMatrix(numOfVertices, numOfEdges)
+Graph::Graph(int numOfVertices, int numOfEdges) : adjList(numOfVertices), incMatrix(numOfVertices, numOfEdges), _numOfVertices(numOfVertices), _numOfEdges(numOfEdges)
 {
 }
 
@@ -22,12 +22,14 @@ Graph::~Graph()
 {
 }
 
+// method for adding edge to the graph
 void Graph::addEdge(int from, int to, int weight)
 {
     adjList.addEdge(from, to, weight);
     incMatrix.addEdge(from, to, weight);
 }
 
+// method for getting the adjacency list
 AdjacencyList &Graph::getAdjList()
 {
     return adjList;
@@ -37,7 +39,7 @@ IncidenceMatrix &Graph::getIncMatrix()
 {
     return incMatrix;
 }
-
+// method for generating undirected graph
 Graph *Graph::generateUndriectedGraph(int numOfVertices, float density, int minWeight, int maxWeight)
 {
 
@@ -103,7 +105,7 @@ Graph *Graph::generateUndriectedGraph(int numOfVertices, float density, int minW
             current = current->next;
         }
     }
-
+    // add random edges to populate graph to desired density
     for (int i = 0; i < numOfEdges - numOfConnectedNodes; i++)
     {
         int index = random.generateRandomInt(0, edges.getLength() - 1);

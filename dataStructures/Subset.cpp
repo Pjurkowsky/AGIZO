@@ -1,13 +1,13 @@
 #include "Subset.h"
 
-int find(Subset subsets[], int i)
+int find(Subset subsets[], int i) // find the subset of an element i
 {
     if (subsets[i].parent != i)
         subsets[i].parent = find(subsets, subsets[i].parent);
     return subsets[i].parent;
 }
 
-void Union(Subset subsets[], int x, int y)
+void Union(Subset subsets[], int x, int y) // merge two subsets
 {
     int xroot = find(subsets, x);
     int yroot = find(subsets, y);
